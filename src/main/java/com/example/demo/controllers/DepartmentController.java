@@ -1,7 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.controllers;
 
-import com.example.demo.entity.Department;
-import com.example.demo.service.DepartmentService;
+import com.example.demo.entities.Department;
+import com.example.demo.error.DepartmentNotFoundException;
+import com.example.demo.services.DepartmentService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public Department fetchDepartmentById(@PathVariable("id") Long departmentId){
+    public Department fetchDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
         LOGGER.info("GET : fetchDepartmentById");
         return departmentService.fetchDepartmentById(departmentId);
     }
@@ -43,7 +44,7 @@ public class DepartmentController {
     }
 
     @DeleteMapping("/departments/{id}")
-    public String deleteDepartmentById(@PathVariable("id") Long departmentId){
+    public String deleteDepartmentById(@PathVariable("id") Long departmentId) throws DepartmentNotFoundException {
         LOGGER.info("DELETE : deleteDepartmentById");
 
         String depName = departmentService.fetchDepartmentById(departmentId).getDepartmentName();

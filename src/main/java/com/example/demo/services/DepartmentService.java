@@ -1,6 +1,7 @@
-package com.example.demo.service;
+package com.example.demo.services;
 
-import com.example.demo.entity.Department;
+import com.example.demo.entities.Department;
+import com.example.demo.error.DepartmentNotFoundException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface DepartmentService {
 
     public List<Department> fetchDepartment();
 
-    public Department fetchDepartmentById(Long departmentId);
+    public Department fetchDepartmentById(Long departmentId) throws DepartmentNotFoundException;
 
     public Department fetchDepartmentByName(String departmentName);
 
